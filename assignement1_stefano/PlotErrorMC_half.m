@@ -38,12 +38,12 @@ function [M_half, stdEstim] = PlotErrorMC_half(F0, K, B, T, sigma)
     loglog(M_half, refLine, '--k', 'LineWidth', 1.5);
     
     % Add the tolerance line
-    yline(tol, '--r', '1 bp Tolerance');
+    %yline(tol, '--r', '1 bp Tolerance');
     
     % Formatting
-    title('Monte Carlo Convergence');
+    title('ErrorMC VS ErrorMC Antithetic');
     xlabel('Number of Simulations (M)');
     ylabel('Standard Error');
-    legend('MC Standard Error', '1/sqrt(M) Reference', '1 bp Tolerance');
+    legend('MC Standard Error', '1/sqrt(M) Reference', '1/2 bp Tolerance', 'MC Antithetic error', 'Location', 'best');
     grid on;
     
