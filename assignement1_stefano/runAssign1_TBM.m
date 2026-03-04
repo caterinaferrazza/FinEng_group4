@@ -74,7 +74,7 @@ figure();
 S0_vector = 0.65:0.001:1.45; % Range of underlying prices 
 F0_vector = S0_vector .* exp(-d*TTM) ./ B;
 %let's use the matlab native function for this problem
-Call_American_KO_CRR = EuropeanOptionAmericanBarrier(F0, K, KO, B, TTM, sigma, d);
+Call_American_KO = EuropeanOptionAmericanBarrier(F0, K, KO, B, TTM, sigma, d);
 % Comparation with Euro Barrier
 
 % Analyze Delta
@@ -98,7 +98,6 @@ ylabel('Delta');
 legend('Delta European', 'Delta American', 'Location', 'best');
 grid on;
 
-%%
 % Analyze Vega
 Eur_vega= zeros(length(F0_vector),1);
 American_vega= zeros(length(F0_vector),1);
@@ -124,8 +123,8 @@ hold on
 
 
 %% Bermudan H
-d=0.02;
-Bermudan = BermudanOptionPrice(F0, K, TTM, sigma, B, d, M)
+% Evaluate Bermudan price
+Bermudan = BermudanOptionPrice(F0, K, TTM, B, sigma, d, M)
 %% Bermudan VS European I
 figure();
 q_vector = linspace(0, 0.05, 100);
@@ -136,7 +135,6 @@ European_vector = zeros(1, length(q_vector));
 
 for i=1:length(q_vector)
     % RICALCOLO F0: varia al variare del dividendo q!
-    % F0 = S0 * exp((r - q) * TTM) = S0 * exp(-q * TTM) / B
     F0_current = S0 * exp(-q_vector(i) * TTM) / B;
     
     % Passiamo l'F0 aggiornato ad entrambe le funzioni!
@@ -146,6 +144,11 @@ end
 plot(q_vector, Bermudan_vector);
 hold on
 plot(q_vector, European_vector);
+title('Bermudan VS European');
+xlabel('Dividends');
+ylabel('Option Price');
+legend('Bermudan', 'European');
+grid on;
 
 
 
