@@ -38,7 +38,7 @@ OptionPrice = EuropeanOptionPrice(F0,K,B,TTM,sigma,pricingMode,M,flag)
 %non funziona molto bene sta cosa qui
 KO=1.4;
 Call_KO_True = EuropeanKOCall_ClosedFormula(F0, K, KO, B, TTM, sigma)
-M_CRR = 2^10;
+M_CRR = 2^7;
 Call_KO_CRR= EuropeanOptionKOCRR(F0, K, KO, B, TTM, sigma, M)
 M_MC = 2^20;
 Call_KO_MC=EuropeanOptionKOMC(F0,K,KO,B,TTM,sigma,M)
