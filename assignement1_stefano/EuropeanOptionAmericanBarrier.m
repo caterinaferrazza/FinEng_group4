@@ -1,25 +1,6 @@
 
 function optionPrice = EuropeanOptionAmericanBarrier(F0, K, KO, B, TTM, sigma, d)
-%{
-S0 = F0*B*exp(d*T);
-if S0 >= KO
-        optionPrice = 0;
-        return;
-end
 
-StockSpec = stockspec(sigma, S0, 'continuous', d);
-r = -log(B)/T;
-
-Rates = r;
-Settle = 0;
-Maturity = round(T * 365);
-Compounding = -1;
-Basis = 3;
-RateSpec = intenvset('ValuationDate', Settle, 'StartDates', Settle, 'EndDates', Maturity, ...
-'Rates', Rates, 'Compounding', Compounding, 'Basis', Basis);
-optionPrice = barrierbybls(RateSpec,StockSpec, 'call', K,0, Maturity, 'UO', KO);
-end
-%}
     % Funzione per calcolare il prezzo di una Call Up-and-Out (Barriera Americana)
     % utilizzando il Principio di Riflessione come mostrato nell'assignment.
     
