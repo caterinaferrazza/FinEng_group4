@@ -36,10 +36,7 @@ function [M_half, stdEstim] = PlotErrorMC_half(F0, K, B, T, sigma)
     % We anchor it to the first point: Error(M) = Error(1) * sqrt(M1) / sqrt(M)
     refLine = stdEstim(10) * sqrt(M_half(10)) ./ sqrt(M_half);
     loglog(M_half, refLine, '--k', 'LineWidth', 1.5);
-    
-    % Add the tolerance line
-    %yline(tol, '--r', '1 bp Tolerance');
-    
+
     % Formatting
     title('ErrorMC VS ErrorMC Antithetic');
     xlabel('Number of Simulations (M)');
